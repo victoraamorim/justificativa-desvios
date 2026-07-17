@@ -26,31 +26,45 @@
   }
 }
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:15px;color:var(--text);background:var(--bg3);min-height:100vh;}
-.app{max-width:1400px;margin:0 auto;padding:1.5rem;}
+.app{max-width:1600px;margin:0 auto;padding:1.25rem 1.5rem 3rem;}
 .hide{display:none!important;}
+
+/* ---------- TOPBAR ---------- */
+.topbar{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:0.5px solid var(--border);}
+.topbar-in{max-width:1600px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.25rem;height:58px;}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.brand-name{font-size:14px;font-weight:600;letter-spacing:-0.2px;}
+.brand-sub{font-size:11px;color:var(--text2);}
+.nav{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-item{padding:7px 14px;font-size:13px;color:var(--text2);cursor:pointer;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:all 0.15s;}
+.nav-item.active{background:var(--green);color:#fff;font-weight:500;}
+.nav-item:hover:not(.active){background:var(--bg2);color:var(--text);}
+.topbar-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--green-light);color:var(--green-text);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.who{font-size:12px;line-height:1.3;text-align:right;}
+.who b{display:block;font-size:12px;}
+.who span{color:var(--text2);font-size:11px;}
+.icon-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;}
+.icon-btn:hover{background:var(--bg2);color:var(--text);}
+.dot{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.dot.zero{display:none;}
+
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin:1.25rem 0 1rem;flex-wrap:wrap;}
+.page-title{font-size:22px;font-weight:600;letter-spacing:-0.4px;}
+.page-sub{font-size:12px;color:var(--text2);margin-top:3px;}
+.section{display:none;}
+.section.active{display:block;}
 
 .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;}
 .login-box{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:2rem;max-width:380px;width:100%;text-align:center;}
-.login-box .logo{margin:0 auto 1rem;}
+.login-box .logo{margin:0 auto 1rem;width:52px;height:52px;}
 .login-title{font-size:16px;font-weight:600;margin-bottom:4px;}
 .login-sub{font-size:12px;color:var(--text2);margin-bottom:1.5rem;}
 .login-error{font-size:12px;color:var(--red);margin-top:8px;display:none;}
-
-.header{display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem 1.25rem;margin-bottom:1.25rem;}
-.header-left{display:flex;align-items:center;gap:12px;}
-.logo{width:38px;height:38px;background:var(--green);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.logo span{color:var(--yellow);font-weight:700;font-size:13px;letter-spacing:0.5px;}
-.header-title{font-size:16px;font-weight:600;}
-.header-sub{font-size:12px;color:var(--text2);margin-top:2px;}
-.header-actions{display:flex;gap:8px;align-items:center;}
-.view-badge{font-size:11px;padding:3px 9px;border-radius:12px;background:var(--bg2);color:var(--text2);font-weight:600;}
-
-.tabs{display:flex;gap:2px;background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:4px;margin-bottom:1.25rem;flex-wrap:wrap;}
-.tab{flex:1;text-align:center;padding:8px 12px;font-size:13px;color:var(--text2);cursor:pointer;border-radius:var(--radius);transition:all 0.15s;white-space:nowrap;}
-.tab.active{background:var(--green);color:#fff;font-weight:500;}
-.tab:hover:not(.active){background:var(--bg2);color:var(--text);}
-.section{display:none;}
-.section.active{display:block;}
+.logo{width:34px;height:34px;background:var(--green);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.logo span{color:var(--yellow);font-weight:700;font-size:12px;letter-spacing:0.5px;}
+.logo img{width:100%;height:100%;object-fit:contain;}
 
 .card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem;}
 .sec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:12px;flex-wrap:wrap;}
@@ -82,23 +96,45 @@ label{font-size:12px;color:var(--text2);display:block;margin-bottom:4px;}
 .badge.info{background:#E6F1FB;color:#185FA5;}
 .badge.roxo{background:#EEEDFE;color:#3C3489;}
 
-.tbl-wrap{overflow-x:auto;border:0.5px solid var(--border);border-radius:var(--radius-lg);background:var(--bg);}
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th{text-align:left;padding:10px;background:var(--bg2);font-size:11px;text-transform:uppercase;letter-spacing:0.3px;color:var(--text2);border-bottom:0.5px solid var(--border);white-space:nowrap;position:sticky;top:0;z-index:1;}
+.tbl-wrap{overflow:auto;max-height:calc(100vh - 300px);border:0.5px solid var(--border);border-radius:var(--radius-lg);background:var(--bg);}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;}
+th{text-align:left;padding:9px 10px;background:var(--bg2);font-size:10.5px;text-transform:uppercase;letter-spacing:0.3px;color:var(--text2);border-bottom:0.5px solid var(--border);white-space:nowrap;position:sticky;top:0;z-index:2;}
 th.sortable{cursor:pointer;user-select:none;}
 th.sortable:hover{color:var(--text);}
-td{padding:8px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;}
-tr:last-child td{border-bottom:none;}
+td{padding:6px 10px;border-bottom:0.5px solid var(--border);vertical-align:top;background:var(--bg);}
+tr:hover td{background:var(--bg2);}
 .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
 .neg{color:var(--red);font-weight:600;}
 .pos{color:var(--green-text);}
-tr.obg td{background:rgba(163,45,45,0.04);}
-.just-cell{min-width:280px;}
-.just-cell textarea{font-size:12px;min-height:52px;}
-.cc{font-size:11px;color:var(--text2);}
+tr.obg td{background:rgba(163,45,45,0.05);}
+tr.obg:hover td{background:rgba(163,45,45,0.09);}
+/* colunas congeladas na rolagem horizontal */
+.fix1,.fix2,.fix3{position:sticky;z-index:1;}
+.fix1{left:0;width:92px;min-width:92px;}
+.fix2{left:92px;width:180px;min-width:180px;}
+.fix3{left:272px;width:210px;min-width:210px;box-shadow:1px 0 0 var(--border);}
+th.fix1,th.fix2,th.fix3{z-index:3;background:var(--bg2);}
+.just-cell{min-width:300px;}
+.just-cell textarea{font-size:12px;min-height:46px;padding:5px 7px;}
+.cc{font-size:10.5px;color:var(--text2);}
 .counter{font-size:10px;color:var(--text3);text-align:right;margin-top:2px;}
 .counter.warn{color:#854F0B;}
 .counter.full{color:var(--red);}
+
+/* ---------- GRÁFICOS ---------- */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:1100px){.chart-grid{grid-template-columns:1fr;}}
+.chart svg{width:100%;height:auto;display:block;}
+.chart text{font-family:inherit;fill:var(--text2);font-size:11px;}
+.chart text.val{fill:var(--text);font-variant-numeric:tabular-nums;}
+.chart text.lbl{fill:var(--text);}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--text2);margin-top:8px;}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;}
+.farol{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px;}
+.farol-item{border:0.5px solid var(--border);border-radius:var(--radius);padding:9px 10px;}
+.farol-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;}
+.farol-pct{font-size:17px;font-weight:600;margin:3px 0;font-variant-numeric:tabular-nums;}
+.farol-sub{font-size:10.5px;color:var(--text2);}
 
 .filter-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:1rem;}
 .filter-bar select,.filter-bar input{width:auto;font-size:13px;padding:6px 10px;min-width:130px;}
@@ -144,45 +180,48 @@ tr.obg td{background:rgba(163,45,45,0.04);}
 </div>
 
 <!-- ================= APP ================= -->
-<div class="app hide" id="app">
+<div class="hide" id="app">
 
-  <div class="header">
-    <div class="header-left">
-      <div class="logo"><span>IM</span></div>
-      <div>
-        <div class="header-title">Justificativa de Desvios Orçamentários</div>
-        <div class="header-sub" id="hdSub">—</div>
+  <div class="topbar">
+    <div class="topbar-in">
+      <div class="brand">
+        <div class="logo"><span>IM</span></div>
+        <div>
+          <div class="brand-name">Iguaçu Máquinas</div>
+          <div class="brand-sub">Justificativa de Desvios</div>
+        </div>
+      </div>
+      <div class="nav" id="nav">
+        <div class="nav-item active" data-t="justif" onclick="tab('justif')"><i class="ti ti-list-check"></i> Justificativas</div>
+        <div class="nav-item ctrl-only admin-only" data-t="painel" onclick="tab('painel')"><i class="ti ti-layout-dashboard"></i> Painel</div>
+        <div class="nav-item admin-only ctrl-only" data-t="rel" onclick="tab('rel')"><i class="ti ti-chart-bar"></i> Relatórios</div>
+        <div class="nav-item ctrl-only" data-t="import" onclick="tab('import')"><i class="ti ti-upload"></i> Importação</div>
+        <div class="nav-item ctrl-only" data-t="periodos" onclick="tab('periodos')"><i class="ti ti-calendar-event"></i> Períodos</div>
+        <div class="nav-item ctrl-only" data-t="cad" onclick="tab('cad')"><i class="ti ti-building"></i> Cadastros</div>
+        <div class="nav-item ctrl-only" data-t="users" onclick="tab('users')"><i class="ti ti-users"></i> Usuários</div>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn ctrl-only" onclick="tab('painel')" title="Notificações"><i class="ti ti-bell"></i><span class="dot zero" id="notifCount">0</span></button>
+        <div class="who"><b id="hdSub">—</b><span id="hdRole">—</span></div>
+        <div class="avatar" id="hdAvatar">—</div>
+        <button class="icon-btn" onclick="doLogout()" title="Sair"><i class="ti ti-logout"></i></button>
       </div>
     </div>
-    <div class="header-actions">
-      <span class="view-badge" id="hdRole">—</span>
-      <button class="btn sm ctrl-only" onclick="tab('painel')" id="btnNotif"><i class="ti ti-bell"></i> <span id="notifCount">0</span></button>
-      <button class="btn sm" onclick="doLogout()"><i class="ti ti-logout"></i> Sair</button>
-    </div>
   </div>
 
-  <div class="tabs">
-    <div class="tab active" data-t="justif" onclick="tab('justif')"><i class="ti ti-list-check"></i> Justificativas</div>
-    <div class="tab ctrl-only admin-only" data-t="painel" onclick="tab('painel')"><i class="ti ti-layout-dashboard"></i> Painel</div>
-    <div class="tab ctrl-only" data-t="import" onclick="tab('import')"><i class="ti ti-upload"></i> Importação</div>
-    <div class="tab ctrl-only" data-t="periodos" onclick="tab('periodos')"><i class="ti ti-calendar-event"></i> Períodos</div>
-    <div class="tab ctrl-only" data-t="cad" onclick="tab('cad')"><i class="ti ti-building"></i> Cadastros</div>
-    <div class="tab ctrl-only" data-t="users" onclick="tab('users')"><i class="ti ti-users"></i> Usuários</div>
-  </div>
+  <div class="app">
 
   <!-- ---------- JUSTIFICATIVAS ---------- -->
   <div class="section active" id="sec-justif">
-    <div class="card" style="padding:0.875rem 1.25rem;">
-      <div class="btn-row" style="justify-content:space-between;">
-        <div class="btn-row">
-          <label style="margin:0;">Período</label>
-          <select id="selPeriodo" style="width:auto;" onchange="trocaPeriodo()"></select>
-          <span id="perInfo" class="muted"></span>
-        </div>
-        <div class="btn-row">
-          <button class="btn sm" onclick="exportar()"><i class="ti ti-download"></i> Exportar</button>
-          <button class="btn primary sm gestor-only" id="btnConcluir" onclick="concluir()"><i class="ti ti-send"></i> Concluir e enviar</button>
-        </div>
+    <div class="page-head">
+      <div>
+        <div class="page-title">Justificativas</div>
+        <div class="page-sub" id="perInfo">—</div>
+      </div>
+      <div class="btn-row">
+        <select id="selPeriodo" style="width:auto;" onchange="trocaPeriodo()"></select>
+        <button class="btn sm" onclick="exportar()"><i class="ti ti-download"></i> Exportar</button>
+        <button class="btn primary sm gestor-only" id="btnConcluir" onclick="concluir()"><i class="ti ti-send"></i> Concluir e enviar</button>
       </div>
     </div>
 
@@ -209,7 +248,7 @@ tr.obg td{background:rgba(163,45,45,0.04);}
     <div class="tbl-wrap">
       <table id="tblLinhas">
         <thead><tr>
-          <th>Filial</th><th>Centro de custo</th><th>Conta contábil</th>
+          <th class="fix1">Filial</th><th class="fix2">Centro de custo</th><th class="fix3">Conta contábil</th>
           <th class="num">Orçado</th><th class="num">Realizado</th>
           <th class="num sortable" onclick="ordenar('variacao_rs')" id="thRS">Variação R$ ▼</th>
           <th class="num sortable" onclick="ordenar('variacao_pct')" id="thPct">Variação %</th>
@@ -259,6 +298,49 @@ tr.obg td{background:rgba(163,45,45,0.04);}
     <div class="card">
       <div class="sec-title" style="margin-bottom:0.75rem;"><i class="ti ti-git-fork"></i> Conflitos de responsabilidade</div>
       <div id="listConf" class="muted">—</div>
+    </div>
+  </div>
+
+  <!-- ---------- RELATÓRIOS ---------- -->
+  <div class="section" id="sec-rel">
+    <div class="page-head">
+      <div>
+        <div class="page-title">Relatórios</div>
+        <div class="page-sub" id="relSub">—</div>
+      </div>
+      <div class="btn-row">
+        <select id="relFilial" style="width:auto;" onchange="renderRel()"><option value="">Todas as filiais</option></select>
+        <select id="relDept" style="width:auto;" onchange="renderRel()"><option value="">Todos os departamentos</option></select>
+        <button class="btn sm" onclick="window.print()"><i class="ti ti-printer"></i> Imprimir</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title" style="margin-bottom:0.25rem;"><i class="ti ti-cash"></i> Desvio explicado × não explicado (R$)</div>
+      <div class="muted" style="margin-bottom:0.875rem;">Soma do valor absoluto das variações. Contar linhas engana: 90% das linhas justificadas pode ser 10% do dinheiro.</div>
+      <div class="chart" id="chExplicado"></div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="card">
+        <div class="sec-title" style="margin-bottom:0.875rem;"><i class="ti ti-building"></i> Variação por departamento</div>
+        <div class="chart" id="chDept"></div>
+      </div>
+      <div class="card">
+        <div class="sec-title" style="margin-bottom:0.875rem;"><i class="ti ti-users"></i> Preenchimento por gestor</div>
+        <div class="chart" id="chGestor"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title" style="margin-bottom:0.875rem;"><i class="ti ti-arrow-bar-to-down"></i> Top 15 · maiores variações desfavoráveis</div>
+      <div class="chart" id="chTop"></div>
+    </div>
+
+    <div class="card">
+      <div class="sec-title" style="margin-bottom:0.25rem;"><i class="ti ti-map-pin"></i> Farol por filial</div>
+      <div class="muted" style="margin-bottom:0.875rem;">% das obrigatórias já justificadas.</div>
+      <div class="farol" id="chFarol"></div>
     </div>
   </div>
 
@@ -368,6 +450,7 @@ tr.obg td{background:rgba(163,45,45,0.04);}
       </tr></thead><tbody id="tbUsers"></tbody></table></div>
     </div>
   </div>
+  </div>
 </div>
 
 <div id="toast"></div>
@@ -411,7 +494,7 @@ const sb = supabase.createClient(SB_URL, SB_KEY);
 const MESES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
 let ME = null, PERIODOS = [], PER = null, LINHAS = [], MEUSTATUS = null;
 let DEPTS = [], CCS = [], CONTAS = [], FILIAIS = [];
-let SORT = {col:'variacao_rs', dir:-1}, PAGE = 0, PSIZE = 200;
+let SORT = {col:'variacao_rs', dir:-1}, PAGE = 0, PSIZE = 200, STATUS = [];
 let bufBase = null, bufDp = null;
 
 // ===================== UTIL =====================
@@ -470,6 +553,7 @@ async function boot(){
   $('login').classList.add('hide'); $('app').classList.remove('hide');
   $('hdSub').textContent = ME.nome || ME.email;
   $('hdRole').textContent = {controladoria:'Controladoria', gestor:'Gestor', diretoria:'Diretoria'}[ME.papel];
+  $('hdAvatar').textContent = (ME.nome || ME.email).trim().split(/\s+/).slice(0,2).map(p => p[0]).join('').toUpperCase();
   document.querySelectorAll('.ctrl-only').forEach(e => { if(ME.papel!=='controladoria') e.classList.add('hide'); });
   document.querySelectorAll('.admin-only').forEach(e => { if(ME.papel==='diretoria') e.classList.remove('hide'); });
   document.querySelectorAll('.gestor-only').forEach(e => { if(ME.papel!=='gestor') e.classList.add('hide'); });
@@ -496,6 +580,7 @@ async function carregarPeriodos(){
 async function trocaPeriodo(){
   PER = PERIODOS.find(p => p.id === $('selPeriodo').value);
   if(!PER) return;
+  STATUS = [];
   $('perInfo').innerHTML = `Prazo ${fmtDt(PER.prazo_final)} · obrigatória se |Var %| ≥ ${fmt(PER.regra_pct)} e |Var R$| ≥ ${fmt(PER.regra_valor)} · <span class="badge ${PER.status==='aberto'?'ok':'neutro'}">${PER.status}</span>`;
   await carregarLinhas();
   if(ME.papel!=='gestor') carregarPainel();
@@ -637,9 +722,9 @@ function renderLinhas(){
     const semDono = !l.dono_email ? '<div class="muted" style="margin-top:3px;"><i class="ti ti-alert-triangle"></i> sem responsável</div>' : '';
     const txt = l.justificativa||'';
     return `<tr class="${l.obrigatoria && !l.justificada ? 'obg':''}">
-      <td>${esc(l.filial)}<div class="cc">${esc(l.filial_desc||'')}</div></td>
-      <td>${esc(l.cc)}<div class="cc">${esc(l.cc_desc||'')}${l.departamento?' · '+esc(l.departamento):''}</div></td>
-      <td>${esc(l.conta)}<div class="cc">${esc(l.conta_desc||'')}</div></td>
+      <td class="fix1">${esc(l.filial)}<div class="cc">${esc(l.filial_desc||'')}</div></td>
+      <td class="fix2">${esc(l.cc)}<div class="cc">${esc(l.cc_desc||'')}${l.departamento?' · '+esc(l.departamento):''}</div></td>
+      <td class="fix3">${esc(l.conta)}<div class="cc">${esc(l.conta_desc||'')}</div></td>
       <td class="num">${fmt(l.orcado)}</td>
       <td class="num">${fmt(l.realizado)}</td>
       <td class="num ${l.variacao_rs>0?'neg':'pos'}">${fmt(l.variacao_rs)}</td>
@@ -736,7 +821,7 @@ async function carregarPainel(){
   if(!PER) return;
   const {data:st, error} = await sb.from('vw_status_gestor').select('*').eq('periodo_id',PER.id).order('email');
   if(error) return toast(error.message, true);
-  const S = st||[];
+  const S = st||[]; STATUS = S;
   const conc = S.filter(s=>s.status==='concluido').length;
   const venc = S.filter(s=>s.status==='vencido').length;
   const pend = S.reduce((a,s)=>a+(s.obrigatorias-s.obrigatorias_ok),0);
@@ -804,6 +889,7 @@ async function carregarNotif(){
   const {data} = await sb.from('notificacoes').select('*').eq('lida',false).order('criado_em',{ascending:false}).limit(50);
   const N = data||[];
   $('notifCount').textContent = N.length;
+  $('notifCount').className = 'dot' + (N.length ? '' : ' zero');
   $('listNotif').innerHTML = N.length ? N.map(n =>
     `<div style="padding:6px 0;border-bottom:0.5px solid var(--border);font-size:13px;">
       <span class="badge ${n.tipo==='envio_concluido'?'ok':'roxo'}">${n.tipo==='envio_concluido'?'Envio':'Reabertura'}</span>
@@ -1080,12 +1166,134 @@ async function setPapel(id, papel){
   toast('Perfil atualizado.');
 }
 
+// ===================== RELATÓRIOS =====================
+const COR_DESF = '#A32D2D', COR_FAV = '#367C2B', COR_NEUTRO = '#C9C7BF';
+const kfmt = v => { const a = Math.abs(v);
+  if(a >= 1e6) return (v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi';
+  if(a >= 1e3) return (v/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil';
+  return v.toLocaleString('pt-BR',{maximumFractionDigits:0}); };
+
+// barras horizontais de um lado só
+function barrasH(dados, {labelW=210, valW=95, rowH=24, fmtV=kfmt} = {}){
+  if(!dados.length) return '<div class="muted">Sem dados para o filtro.</div>';
+  const W = 820, barW = W - labelW - valW;
+  const max = Math.max(...dados.map(d => Math.abs(d.val)), 1);
+  const H = dados.length * rowH + 8;
+  const barras = dados.map((d,i) => {
+    const y = i*rowH + 4, w = Math.max(Math.abs(d.val)/max*barW, 1.5);
+    return `<rect x="${labelW}" y="${y+4}" width="${w}" height="${rowH-11}" rx="2" fill="${d.cor||COR_DESF}"></rect>
+      <text x="${labelW-8}" y="${y+rowH/2+1}" text-anchor="end" class="lbl">${esc(d.lbl)}</text>
+      <text x="${labelW+w+6}" y="${y+rowH/2+1}" class="val">${fmtV(d.val)}${d.sufixo||''}</text>`;
+  }).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img"><line x1="${labelW}" y1="0" x2="${labelW}" y2="${H}" stroke="var(--border)"></line>${barras}</svg>`;
+}
+
+// barras divergentes: desfavorável à direita, favorável à esquerda
+function barrasDiv(dados, {labelW=180, rowH=26} = {}){
+  if(!dados.length) return '<div class="muted">Sem dados para o filtro.</div>';
+  const W = 820, zona = W - labelW - 20, meio = labelW + zona/2;
+  const max = Math.max(...dados.map(d => Math.abs(d.val)), 1);
+  const H = dados.length * rowH + 24;
+  const barras = dados.map((d,i) => {
+    const y = i*rowH + 18, w = Math.max(Math.abs(d.val)/max*(zona/2), 1.5);
+    const x = d.val >= 0 ? meio : meio - w;
+    const tx = d.val >= 0 ? meio + w + 6 : meio - w - 6;
+    return `<rect x="${x}" y="${y+4}" width="${w}" height="${rowH-12}" rx="2" fill="${d.val>=0?COR_DESF:COR_FAV}"></rect>
+      <text x="${labelW-8}" y="${y+rowH/2+1}" text-anchor="end" class="lbl">${esc(d.lbl)}</text>
+      <text x="${tx}" y="${y+rowH/2+1}" text-anchor="${d.val>=0?'start':'end'}" class="val">${kfmt(d.val)}</text>`;
+  }).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img">
+    <text x="${meio+6}" y="10" fill="${COR_DESF}">desfavorável →</text>
+    <text x="${meio-6}" y="10" text-anchor="end" fill="${COR_FAV}">← favorável</text>
+    <line x1="${meio}" y1="14" x2="${meio}" y2="${H}" stroke="var(--border2)"></line>${barras}</svg>`;
+}
+
+function linhasRel(){
+  const f = $('relFilial').value, d = $('relDept').value;
+  return LINHAS.filter(l => (!f || l.filial===f) && (!d || l.departamento===d));
+}
+
+async function renderRel(){
+  if(!PER) return;
+  const uniq = (arr,k) => [...new Set(arr.map(x=>x[k]).filter(Boolean))].sort();
+  fillSel('relFilial', uniq(LINHAS,'filial').map(c => [c, c+' - '+(LINHAS.find(l=>l.filial===c).filial_desc||'')]), 'Todas as filiais');
+  fillSel('relDept', uniq(LINHAS,'departamento').map(x => [x,x]), 'Todos os departamentos');
+  const L = linhasRel();
+  $('relSub').textContent = `${PER.nome} · ${L.length.toLocaleString('pt-BR')} linha(s) · obrigatória se |Var %| ≥ ${fmt(PER.regra_pct)} e |Var R$| ≥ ${fmt(PER.regra_valor)}`;
+
+  // 1. desvio explicado x não explicado (R$), nas obrigatórias
+  const obg = L.filter(l => l.obrigatoria);
+  const vExp = obg.filter(l => l.justificada).reduce((s,l) => s+Math.abs(Number(l.variacao_rs)), 0);
+  const vNao = obg.filter(l => !l.justificada).reduce((s,l) => s+Math.abs(Number(l.variacao_rs)), 0);
+  const tot = vExp + vNao;
+  const pctE = tot ? vExp/tot*100 : 0;
+  const W = 820, hb = 34;
+  $('chExplicado').innerHTML = tot ? `
+    <svg viewBox="0 0 ${W} ${hb+30}" role="img">
+      <rect x="0" y="0" width="${Math.max(pctE/100*W,0)}" height="${hb}" rx="3" fill="${COR_FAV}"></rect>
+      <rect x="${pctE/100*W}" y="0" width="${Math.max((100-pctE)/100*W,0)}" height="${hb}" rx="3" fill="${COR_DESF}"></rect>
+      <text x="8" y="${hb+22}" class="val">R$ ${fmt(vExp)} explicado (${pctE.toFixed(1)}%)</text>
+      <text x="${W-8}" y="${hb+22}" text-anchor="end" class="val">R$ ${fmt(vNao)} em aberto</text>
+    </svg>
+    <div class="legend">
+      <span><i style="background:${COR_FAV}"></i>Justificado</span>
+      <span><i style="background:${COR_DESF}"></i>Sem justificativa</span>
+      <span>${obg.filter(l=>l.justificada).length}/${obg.length} linhas obrigatórias</span>
+    </div>`
+    : '<div class="muted">Nenhuma linha obrigatória para o filtro atual.</div>';
+
+  // 2. variação por departamento
+  const porDept = {};
+  L.forEach(l => { const k = l.departamento || '(sem departamento)';
+    porDept[k] = (porDept[k]||0) + Number(l.variacao_rs); });
+  $('chDept').innerHTML = barrasDiv(Object.entries(porDept)
+    .map(([lbl,val]) => ({lbl, val}))
+    .sort((a,b) => b.val - a.val));
+
+  // 3. preenchimento por gestor
+  if(!STATUS.length){
+    const {data} = await sb.from('vw_status_gestor').select('*').eq('periodo_id',PER.id).order('email');
+    STATUS = data||[];
+  }
+  $('chGestor').innerHTML = barrasH(STATUS
+    .map(s => ({lbl:(s.nome||s.email).split(' ').slice(0,2).join(' '),
+                val:Number(s.pct_obrigatorias),
+                sufixo:'% · '+s.obrigatorias_ok+'/'+s.obrigatorias,
+                cor: s.pct_obrigatorias>=100 ? COR_FAV : s.pct_obrigatorias>=50 ? '#B7791F' : COR_DESF}))
+    .sort((a,b) => a.val - b.val),
+    {labelW:170, valW:130, fmtV:v => v.toFixed(0)});
+
+  // 4. top 15 desfavoráveis
+  $('chTop').innerHTML = barrasH(L.filter(l => l.variacao_rs > 0)
+    .sort((a,b) => b.variacao_rs - a.variacao_rs).slice(0,15)
+    .map(l => ({lbl:`${l.filial} · ${l.cc} · ${l.conta}`, val:Number(l.variacao_rs),
+                cor: l.justificada ? COR_NEUTRO : COR_DESF})),
+    {labelW:250});
+
+  // 5. farol por filial
+  const porFil = {};
+  L.forEach(l => { const k = l.filial;
+    porFil[k] = porFil[k] || {desc:l.filial_desc||'', obg:0, ok:0};
+    if(l.obrigatoria){ porFil[k].obg++; if(l.justificada) porFil[k].ok++; } });
+  $('chFarol').innerHTML = Object.entries(porFil).sort().map(([f,v]) => {
+    const p = v.obg ? Math.round(v.ok/v.obg*100) : 100;
+    const cor = p>=100 ? COR_FAV : p>=50 ? '#B7791F' : COR_DESF;
+    return `<div class="farol-item">
+      <div class="farol-top"><span>${esc(f)}</span><span class="badge ${p>=100?'ok':p>=50?'medio':'alto'}">${v.ok}/${v.obg}</span></div>
+      <div class="farol-pct" style="color:${cor}">${p}%</div>
+      <div class="bar"><div style="width:${p}%;background:${cor}"></div></div>
+      <div class="farol-sub">${esc(v.desc)}</div></div>`;
+  }).join('') || '<div class="muted">Sem dados.</div>';
+}
+
 // ===================== NAV =====================
 function tab(t){
-  document.querySelectorAll('.tab').forEach(e => e.classList.toggle('active', e.dataset.t===t));
+  document.querySelectorAll('.nav-item').forEach(e => e.classList.toggle('active', e.dataset.t===t));
   document.querySelectorAll('.section').forEach(e => e.classList.toggle('active', e.id==='sec-'+t));
   if(t==='painel'){ carregarPainel(); carregarNotif(); }
+  if(t==='rel') renderRel();
   if(t==='cad' || t==='users') carregarDims();
+  window.scrollTo({top:0});
 }
 
 boot();
