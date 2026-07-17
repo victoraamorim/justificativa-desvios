@@ -10,44 +10,46 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#ffffff;--bg2:#f8f8f6;--bg3:#f1f0eb;
-  --text:#1a1a18;--text2:#6b6b68;--text3:#9b9b97;
-  --border:rgba(0,0,0,0.12);--border2:rgba(0,0,0,0.2);
+  --bg:#ffffff;--bg2:#f7f7f4;--bg3:#eeede8;
+  --text:#17181a;--text2:#6b6b68;--text3:#9b9b97;
+  --border:rgba(0,0,0,0.10);--border2:rgba(0,0,0,0.18);
   --radius:8px;--radius-lg:12px;
-  --green:#367C2B;--green-dark:#2a6022;--green-light:#EAF3DE;--green-text:#3B6D11;
-  --yellow:#FFDE00;--red:#A32D2D;--red-light:#FCEBEB;
+  --green:#2F6B24;--green-dark:#23511B;--green-light:#E9F2E1;--green-text:#2F6B24;
+  --yellow:#FFDE00;--red:#A32D2D;--red-light:#FBEAEA;--amber:#8A5A0B;
+  --topbar:#0E2A14;--topbar2:#163A1D;--topbar-text:#EAF1E7;--topbar-text2:#9BB49C;
+  --shadow:0 1px 2px rgba(0,0,0,0.04),0 1px 3px rgba(0,0,0,0.06);
 }
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#1e1e1c;--bg2:#2a2a28;--bg3:#242422;
-    --text:#e8e8e4;--text2:#9b9b97;--text3:#6b6b68;
-    --border:rgba(255,255,255,0.12);--border2:rgba(255,255,255,0.2);
-    --green-light:#1a3014;--green-text:#7ec870;--red-light:#3a1a1a;--red:#e88;
-  }
+html[data-theme="dark"]{
+  --bg:#1b1c1a;--bg2:#232522;--bg3:#141513;
+  --text:#e9eae6;--text2:#9b9d97;--text3:#6b6d68;
+  --border:rgba(255,255,255,0.10);--border2:rgba(255,255,255,0.18);
+  --green:#4E9B3E;--green-dark:#3d7c31;--green-light:#1c3316;--green-text:#8CCB79;
+  --red:#E58A8A;--red-light:#3a1c1c;--amber:#D9A441;
+  --topbar:#0B1F0F;--topbar2:#122E17;
+  --shadow:0 1px 3px rgba(0,0,0,0.4);
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:15px;color:var(--text);background:var(--bg3);min-height:100vh;}
 .app{max-width:1600px;margin:0 auto;padding:1.25rem 1.5rem 3rem;}
 .hide{display:none!important;}
 
 /* ---------- TOPBAR ---------- */
-.topbar{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:0.5px solid var(--border);}
-.topbar-in{max-width:1600px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.25rem;height:58px;}
-.brand{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.brand-name{font-size:14px;font-weight:600;letter-spacing:-0.2px;}
-.brand-sub{font-size:11px;color:var(--text2);}
-.nav{display:flex;gap:4px;flex:1;overflow-x:auto;scrollbar-width:none;}
+.topbar{position:sticky;top:0;z-index:30;background:var(--topbar);}
+.topbar-in{max-width:1600px;margin:0 auto;padding:0 1.5rem;display:flex;align-items:center;gap:1.5rem;height:60px;}
+.brand{display:flex;align-items:center;gap:10px;flex-shrink:0;padding-right:1.25rem;border-right:1px solid rgba(255,255,255,0.12);}
+.brand-name{font-size:14px;font-weight:600;letter-spacing:-0.2px;color:#fff;}
+.brand-sub{font-size:10.5px;color:var(--topbar-text2);letter-spacing:0.2px;}
+.nav{display:flex;gap:2px;flex:1;overflow-x:auto;scrollbar-width:none;}
 .nav::-webkit-scrollbar{display:none;}
-.nav-item{padding:7px 14px;font-size:13px;color:var(--text2);cursor:pointer;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:all 0.15s;}
-.nav-item.active{background:var(--green);color:#fff;font-weight:500;}
-.nav-item:hover:not(.active){background:var(--bg2);color:var(--text);}
+.nav-item{padding:7px 13px;font-size:13px;color:var(--topbar-text2);cursor:pointer;border-radius:999px;white-space:nowrap;display:flex;align-items:center;gap:6px;transition:all 0.15s;}
+.nav-item.active{background:var(--yellow);color:#0E2A14;font-weight:600;}
+.nav-item:hover:not(.active){background:var(--topbar2);color:var(--topbar-text);}
 .topbar-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
-.avatar{width:30px;height:30px;border-radius:50%;background:var(--green-light);color:var(--green-text);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--topbar2);color:var(--topbar-text);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:1px solid rgba(255,255,255,0.14);}
 .who{font-size:12px;line-height:1.3;text-align:right;}
-.who b{display:block;font-size:12px;}
-.who span{color:var(--text2);font-size:11px;}
-.icon-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:var(--radius);border:0.5px solid var(--border2);background:var(--bg);color:var(--text2);cursor:pointer;}
-.icon-btn:hover{background:var(--bg2);color:var(--text);}
-.dot{position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.who b{display:block;font-size:12px;color:#fff;font-weight:500;}
+.who span{color:var(--topbar-text2);font-size:10.5px;}
+.icon-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:var(--radius);border:1px solid rgba(255,255,255,0.14);background:transparent;color:var(--topbar-text2);cursor:pointer;}
+.icon-btn:hover{background:var(--topbar2);color:#fff;}
+.dot{position:absolute;top:-5px;right:-5px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--topbar);}
 .dot.zero{display:none;}
 
 .page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;margin:1.25rem 0 1rem;flex-wrap:wrap;}
@@ -66,7 +68,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-seri
 .logo span{color:var(--yellow);font-weight:700;font-size:12px;letter-spacing:0.5px;}
 .logo img{width:100%;height:100%;object-fit:contain;}
 
-.card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem;}
+.card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem;box-shadow:var(--shadow);}
 .sec-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;gap:12px;flex-wrap:wrap;}
 .sec-title{font-size:14px;font-weight:600;display:flex;align-items:center;gap:7px;}
 .muted{color:var(--text2);font-size:12px;}
@@ -96,7 +98,7 @@ label{font-size:12px;color:var(--text2);display:block;margin-bottom:4px;}
 .badge.info{background:#E6F1FB;color:#185FA5;}
 .badge.roxo{background:#EEEDFE;color:#3C3489;}
 
-.tbl-wrap{overflow:auto;max-height:calc(100vh - 300px);border:0.5px solid var(--border);border-radius:var(--radius-lg);background:var(--bg);}
+.tbl-wrap{overflow:auto;max-height:calc(100vh - 300px);border:0.5px solid var(--border);border-radius:var(--radius-lg);background:var(--bg);box-shadow:var(--shadow);}
 table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;}
 th{text-align:left;padding:9px 10px;background:var(--bg2);font-size:10.5px;text-transform:uppercase;letter-spacing:0.3px;color:var(--text2);border-bottom:0.5px solid var(--border);white-space:nowrap;position:sticky;top:0;z-index:2;}
 th.sortable{cursor:pointer;user-select:none;}
@@ -118,7 +120,7 @@ th.fix1,th.fix2,th.fix3{z-index:3;background:var(--bg2);}
 .just-cell textarea{font-size:12px;min-height:46px;padding:5px 7px;}
 .cc{font-size:10.5px;color:var(--text2);}
 .counter{font-size:10px;color:var(--text3);text-align:right;margin-top:2px;}
-.counter.warn{color:#854F0B;}
+.counter.warn{color:var(--amber);}
 .counter.full{color:var(--red);}
 
 /* ---------- GRÁFICOS ---------- */
@@ -140,7 +142,7 @@ th.fix1,th.fix2,th.fix3{z-index:3;background:var(--bg2);}
 .filter-bar select,.filter-bar input{width:auto;font-size:13px;padding:6px 10px;min-width:130px;}
 
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:1rem;}
-.stat{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem;}
+.stat{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius-lg);padding:1rem;box-shadow:var(--shadow);}
 .stat-val{font-size:22px;font-weight:600;}
 .stat-lbl{font-size:11px;color:var(--text2);margin-top:2px;}
 
@@ -201,6 +203,7 @@ th.fix1,th.fix2,th.fix3{z-index:3;background:var(--bg2);}
         <div class="nav-item ctrl-only" data-t="users" onclick="tab('users')"><i class="ti ti-users"></i> Usuários</div>
       </div>
       <div class="topbar-right">
+        <button class="icon-btn" onclick="trocaTema()" title="Claro / escuro" id="btnTema"><i class="ti ti-moon"></i></button>
         <button class="icon-btn ctrl-only" onclick="tab('painel')" title="Notificações"><i class="ti ti-bell"></i><span class="dot zero" id="notifCount">0</span></button>
         <div class="who"><b id="hdSub">—</b><span id="hdRole">—</span></div>
         <div class="avatar" id="hdAvatar">—</div>
@@ -335,6 +338,7 @@ th.fix1,th.fix2,th.fix3{z-index:3;background:var(--bg2);}
     <div class="card">
       <div class="sec-title" style="margin-bottom:0.875rem;"><i class="ti ti-arrow-bar-to-down"></i> Top 15 · maiores variações desfavoráveis</div>
       <div class="chart" id="chTop"></div>
+      <div id="chTopLeg"></div>
     </div>
 
     <div class="card">
@@ -496,6 +500,25 @@ let ME = null, PERIODOS = [], PER = null, LINHAS = [], MEUSTATUS = null;
 let DEPTS = [], CCS = [], CONTAS = [], FILIAIS = [];
 let SORT = {col:'variacao_rs', dir:-1}, PAGE = 0, PSIZE = 200, STATUS = [];
 let bufBase = null, bufDp = null;
+
+// ===================== TEMA =====================
+function aplicaTema(t){
+  document.documentElement.setAttribute('data-theme', t);
+  const b = $('btnTema');
+  if(b) b.innerHTML = t==='dark' ? '<i class="ti ti-sun"></i>' : '<i class="ti ti-moon"></i>';
+}
+function trocaTema(){
+  const novo = document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  try{ localStorage.setItem('tema', novo); }catch(e){}
+  aplicaTema(novo);
+  if($('sec-rel').classList.contains('active')) renderRel();
+}
+(function(){
+  let t = null;
+  try{ t = localStorage.getItem('tema'); }catch(e){}
+  if(!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  aplicaTema(t);
+})();
 
 // ===================== UTIL =====================
 const $ = id => document.getElementById(id);
@@ -1167,11 +1190,19 @@ async function setPapel(id, papel){
 }
 
 // ===================== RELATÓRIOS =====================
-const COR_DESF = '#A32D2D', COR_FAV = '#367C2B', COR_NEUTRO = '#C9C7BF';
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let COR_DESF = '#A32D2D', COR_FAV = '#2F6B24', COR_NEUTRO = '#C9C7BF', COR_AMBAR = '#8A5A0B';
+function coresDoTema(){
+  COR_DESF = cssVar('--red') || '#A32D2D';
+  COR_FAV = cssVar('--green') || '#2F6B24';
+  COR_AMBAR = cssVar('--amber') || '#8A5A0B';
+  COR_NEUTRO = cssVar('--text3') || '#9b9b97';
+}
 const kfmt = v => { const a = Math.abs(v);
   if(a >= 1e6) return (v/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi';
   if(a >= 1e3) return (v/1e3).toLocaleString('pt-BR',{maximumFractionDigits:0})+' mil';
   return v.toLocaleString('pt-BR',{maximumFractionDigits:0}); };
+const corta = (s,n) => { s = (s||'').toString(); return s.length > n ? s.slice(0,n-1)+'…' : s; };
 
 // barras horizontais de um lado só
 function barrasH(dados, {labelW=210, valW=95, rowH=24, fmtV=kfmt} = {}){
@@ -1181,31 +1212,37 @@ function barrasH(dados, {labelW=210, valW=95, rowH=24, fmtV=kfmt} = {}){
   const H = dados.length * rowH + 8;
   const barras = dados.map((d,i) => {
     const y = i*rowH + 4, w = Math.max(Math.abs(d.val)/max*barW, 1.5);
+    const dentro = w > barW*0.75;   // barra longa: valor vai para dentro
     return `<rect x="${labelW}" y="${y+4}" width="${w}" height="${rowH-11}" rx="2" fill="${d.cor||COR_DESF}"></rect>
       <text x="${labelW-8}" y="${y+rowH/2+1}" text-anchor="end" class="lbl">${esc(d.lbl)}</text>
-      <text x="${labelW+w+6}" y="${y+rowH/2+1}" class="val">${fmtV(d.val)}${d.sufixo||''}</text>`;
+      <text x="${dentro ? labelW+w-6 : labelW+w+6}" y="${y+rowH/2+1}" text-anchor="${dentro?'end':'start'}"
+        class="val" ${dentro?'fill="#fff"':''}>${fmtV(d.val)}${d.sufixo||''}</text>
+      ${d.tip ? `<title>${esc(d.tip)}</title>` : ''}`;
   }).join('');
   return `<svg viewBox="0 0 ${W} ${H}" role="img"><line x1="${labelW}" y1="0" x2="${labelW}" y2="${H}" stroke="var(--border)"></line>${barras}</svg>`;
 }
 
 // barras divergentes: desfavorável à direita, favorável à esquerda
-function barrasDiv(dados, {labelW=180, rowH=26} = {}){
+function barrasDiv(dados, {labelW=190, rowH=27} = {}){
   if(!dados.length) return '<div class="muted">Sem dados para o filtro.</div>';
-  const W = 820, zona = W - labelW - 20, meio = labelW + zona/2;
+  const W = 820, folga = 70, zona = W - labelW - folga, meio = labelW + zona/2;
   const max = Math.max(...dados.map(d => Math.abs(d.val)), 1);
-  const H = dados.length * rowH + 24;
+  const H = dados.length * rowH + 26;
   const barras = dados.map((d,i) => {
-    const y = i*rowH + 18, w = Math.max(Math.abs(d.val)/max*(zona/2), 1.5);
+    const y = i*rowH + 20, w = Math.max(Math.abs(d.val)/max*(zona/2), 1.5);
     const x = d.val >= 0 ? meio : meio - w;
-    const tx = d.val >= 0 ? meio + w + 6 : meio - w - 6;
-    return `<rect x="${x}" y="${y+4}" width="${w}" height="${rowH-12}" rx="2" fill="${d.val>=0?COR_DESF:COR_FAV}"></rect>
-      <text x="${labelW-8}" y="${y+rowH/2+1}" text-anchor="end" class="lbl">${esc(d.lbl)}</text>
-      <text x="${tx}" y="${y+rowH/2+1}" text-anchor="${d.val>=0?'start':'end'}" class="val">${kfmt(d.val)}</text>`;
+    const dentro = w > zona/2*0.7;   // barra longa: valor dentro, não em cima do rótulo
+    const tx = d.val >= 0 ? (dentro ? meio+w-6 : meio+w+6) : (dentro ? meio-w+6 : meio-w-6);
+    const anc = d.val >= 0 ? (dentro?'end':'start') : (dentro?'start':'end');
+    return `<rect x="${x}" y="${y+4}" width="${w}" height="${rowH-13}" rx="2" fill="${d.val>=0?COR_DESF:COR_FAV}"></rect>
+      <text x="${labelW-10}" y="${y+rowH/2+1}" text-anchor="end" class="lbl">${esc(corta(d.lbl,22))}</text>
+      <text x="${tx}" y="${y+rowH/2+1}" text-anchor="${anc}" class="val" ${dentro?'fill="#fff"':''}>${kfmt(d.val)}</text>
+      ${d.tip ? `<title>${esc(d.tip)}</title>` : ''}`;
   }).join('');
   return `<svg viewBox="0 0 ${W} ${H}" role="img">
-    <text x="${meio+6}" y="10" fill="${COR_DESF}">desfavorável →</text>
-    <text x="${meio-6}" y="10" text-anchor="end" fill="${COR_FAV}">← favorável</text>
-    <line x1="${meio}" y1="14" x2="${meio}" y2="${H}" stroke="var(--border2)"></line>${barras}</svg>`;
+    <text x="${meio+8}" y="11" fill="${COR_DESF}">desfavorável →</text>
+    <text x="${meio-8}" y="11" text-anchor="end" fill="${COR_FAV}">← favorável</text>
+    <line x1="${meio}" y1="16" x2="${meio}" y2="${H}" stroke="var(--border2)"></line>${barras}</svg>`;
 }
 
 function linhasRel(){
@@ -1215,6 +1252,7 @@ function linhasRel(){
 
 async function renderRel(){
   if(!PER) return;
+  coresDoTema();
   const uniq = (arr,k) => [...new Set(arr.map(x=>x[k]).filter(Boolean))].sort();
   fillSel('relFilial', uniq(LINHAS,'filial').map(c => [c, c+' - '+(LINHAS.find(l=>l.filial===c).filial_desc||'')]), 'Todas as filiais');
   fillSel('relDept', uniq(LINHAS,'departamento').map(x => [x,x]), 'Todos os departamentos');
@@ -1247,7 +1285,7 @@ async function renderRel(){
   L.forEach(l => { const k = l.departamento || '(sem departamento)';
     porDept[k] = (porDept[k]||0) + Number(l.variacao_rs); });
   $('chDept').innerHTML = barrasDiv(Object.entries(porDept)
-    .map(([lbl,val]) => ({lbl, val}))
+    .map(([lbl,val]) => ({lbl, val, tip:`${lbl}: R$ ${fmt(val)}`}))
     .sort((a,b) => b.val - a.val));
 
   // 3. preenchimento por gestor
@@ -1256,33 +1294,40 @@ async function renderRel(){
     STATUS = data||[];
   }
   $('chGestor').innerHTML = barrasH(STATUS
-    .map(s => ({lbl:(s.nome||s.email).split(' ').slice(0,2).join(' '),
+    .map(s => ({lbl:corta((s.nome||s.email).split(' ').slice(0,2).join(' '),20),
                 val:Number(s.pct_obrigatorias),
                 sufixo:'% · '+s.obrigatorias_ok+'/'+s.obrigatorias,
-                cor: s.pct_obrigatorias>=100 ? COR_FAV : s.pct_obrigatorias>=50 ? '#B7791F' : COR_DESF}))
+                tip:s.email,
+                cor: s.pct_obrigatorias>=100 ? COR_FAV : s.pct_obrigatorias>=50 ? COR_AMBAR : COR_DESF}))
     .sort((a,b) => a.val - b.val),
     {labelW:170, valW:130, fmtV:v => v.toFixed(0)});
 
-  // 4. top 15 desfavoráveis
+  // 4. top 15 desfavoráveis — nome da conta em primeiro lugar
   $('chTop').innerHTML = barrasH(L.filter(l => l.variacao_rs > 0)
     .sort((a,b) => b.variacao_rs - a.variacao_rs).slice(0,15)
-    .map(l => ({lbl:`${l.filial} · ${l.cc} · ${l.conta}`, val:Number(l.variacao_rs),
+    .map(l => ({lbl:corta(l.conta_desc || l.conta, 34) + ' · ' + corta(l.cc_desc || l.cc, 16),
+                val:Number(l.variacao_rs),
+                tip:`${l.filial_desc||l.filial} · ${l.cc} ${l.cc_desc||''} · ${l.conta} ${l.conta_desc||''}\nOrçado ${fmt(l.orcado)} · Realizado ${fmt(l.realizado)} · Variação ${fmt(l.variacao_rs)} (${fmtPct(l.variacao_pct)})`,
                 cor: l.justificada ? COR_NEUTRO : COR_DESF})),
-    {labelW:250});
+    {labelW:330});
+  $('chTopLeg').innerHTML = `<div class="legend">
+      <span><i style="background:${COR_DESF}"></i>Sem justificativa</span>
+      <span><i style="background:${COR_NEUTRO}"></i>Já justificada</span>
+      <span>Passe o mouse para ver filial, orçado e realizado.</span></div>`;
 
   // 5. farol por filial
   const porFil = {};
   L.forEach(l => { const k = l.filial;
     porFil[k] = porFil[k] || {desc:l.filial_desc||'', obg:0, ok:0};
     if(l.obrigatoria){ porFil[k].obg++; if(l.justificada) porFil[k].ok++; } });
-  $('chFarol').innerHTML = Object.entries(porFil).sort().map(([f,v]) => {
+  $('chFarol').innerHTML = Object.entries(porFil).sort((a,b) => (a[1].desc||'').localeCompare(b[1].desc||'')).map(([f,v]) => {
     const p = v.obg ? Math.round(v.ok/v.obg*100) : 100;
-    const cor = p>=100 ? COR_FAV : p>=50 ? '#B7791F' : COR_DESF;
-    return `<div class="farol-item">
-      <div class="farol-top"><span>${esc(f)}</span><span class="badge ${p>=100?'ok':p>=50?'medio':'alto'}">${v.ok}/${v.obg}</span></div>
+    const cor = p>=100 ? COR_FAV : p>=50 ? COR_AMBAR : COR_DESF;
+    return `<div class="farol-item" title="${esc(f)} · ${v.ok} de ${v.obg} obrigatórias justificadas">
+      <div class="farol-top"><span>${esc(v.desc||f)}</span><span class="badge ${p>=100?'ok':p>=50?'medio':'alto'}">${v.ok}/${v.obg}</span></div>
       <div class="farol-pct" style="color:${cor}">${p}%</div>
       <div class="bar"><div style="width:${p}%;background:${cor}"></div></div>
-      <div class="farol-sub">${esc(v.desc)}</div></div>`;
+      <div class="farol-sub">${esc(f)}</div></div>`;
   }).join('') || '<div class="muted">Sem dados.</div>';
 }
 
