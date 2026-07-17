@@ -28,6 +28,7 @@ html[data-theme="dark"]{
   --topbar:#0B1F0F;--topbar2:#122E17;
   --shadow:0 1px 3px rgba(0,0,0,0.4);
 }
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:15px;color:var(--text);background:var(--bg3);min-height:100vh;-webkit-font-smoothing:antialiased;}
 .app{max-width:1600px;margin:0 auto;padding:1.25rem 1.5rem 3rem;}
 .hide{display:none!important;}
 
@@ -504,14 +505,15 @@ let bufBase = null, bufDp = null;
 // ===================== TEMA =====================
 function aplicaTema(t){
   document.documentElement.setAttribute('data-theme', t);
-  const b = $('btnTema');
+  const b = document.getElementById('btnTema');
   if(b) b.innerHTML = t==='dark' ? '<i class="ti ti-sun"></i>' : '<i class="ti ti-moon"></i>';
 }
 function trocaTema(){
   const novo = document.documentElement.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
   try{ localStorage.setItem('tema', novo); }catch(e){}
   aplicaTema(novo);
-  if($('sec-rel').classList.contains('active')) renderRel();
+  const r = document.getElementById('sec-rel');
+  if(r && r.classList.contains('active')) renderRel();
 }
 (function(){
   let t = null;
