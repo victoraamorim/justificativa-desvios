@@ -347,12 +347,19 @@ tr.obg td{background:rgba(163,45,45,0.04);}
   <!-- ---------- USUÁRIOS ---------- -->
   <div class="section" id="sec-users">
     <div class="card">
-      <div class="sec-title" style="margin-bottom:0.75rem;"><i class="ti ti-user-plus"></i> Gestores do de-para sem login</div>
+      <div class="sec-header">
+        <div class="sec-title"><i class="ti ti-user-plus"></i> Gestores do de-para sem login</div>
+        <button class="btn primary sm" onclick="abrirNovoUsuario()"><i class="ti ti-plus"></i> Novo usuário</button>
+      </div>
       <div class="muted" style="margin-bottom:0.75rem;">
-        A criação do login é feita no painel do Supabase (Authentication → Add user → Create new user), com <b>Auto Confirm User</b> marcado.
-        Defina uma senha inicial, repasse ao gestor e peça a troca no primeiro acesso.
+        O login é criado aqui mesmo, com senha inicial definida por você. Repasse ao gestor e peça a troca no primeiro acesso.
       </div>
       <div id="listSemLogin" class="muted">—</div>
+    </div>
+    <div class="card">
+      <div class="sec-title" style="margin-bottom:0.75rem;"><i class="ti ti-shield-exclamation"></i> Logins sem vínculo no de-para</div>
+      <div class="muted" style="margin-bottom:0.5rem;">Contas que existem no Auth mas não respondem por nenhuma linha. Não enxergam dado algum — mas se você não reconhece o e-mail, investigue.</div>
+      <div id="listSemVinculo" class="muted">—</div>
     </div>
     <div class="card">
       <div class="sec-title" style="margin-bottom:0.75rem;"><i class="ti ti-users"></i> Usuários cadastrados</div>
@@ -364,6 +371,27 @@ tr.obg td{background:rgba(163,45,45,0.04);}
 </div>
 
 <div id="toast"></div>
+
+<!-- ---------- MODAL NOVO USUÁRIO ---------- -->
+<div class="overlay hide" id="ovUser">
+  <div class="modal" style="max-width:520px;">
+    <div class="modal-title"><span><i class="ti ti-user-plus"></i> Novo usuário</span><span class="x" onclick="fechar('ovUser')"><i class="ti ti-x"></i></span></div>
+    <div class="form-group"><label>Nome</label><input id="nuNome" placeholder="Nome do gestor"></div>
+    <div class="form-group"><label>E-mail</label><input id="nuEmail" type="email" placeholder="nome@iguacumaquinas.com.br"></div>
+    <div class="form-group"><label>Perfil de acesso</label><select id="nuPapel">
+      <option value="gestor">Gestor</option><option value="controladoria">Controladoria</option><option value="diretoria">Diretoria</option>
+    </select></div>
+    <div class="form-group"><label>Senha inicial</label>
+      <div class="btn-row"><input id="nuSenha"><button class="btn sm" onclick="$('nuSenha').value=gerarSenha()"><i class="ti ti-refresh"></i></button></div>
+      <div class="muted" style="margin-top:4px;">O login é criado já confirmado. Repasse a senha ao gestor e peça a troca no primeiro acesso.</div>
+    </div>
+    <div class="btn-row" style="margin-top:1rem;">
+      <button class="btn primary" onclick="criarUsuario()" id="nuBtn"><i class="ti ti-check"></i> Criar login</button>
+      <button class="btn" onclick="fechar('ovUser')">Cancelar</button>
+    </div>
+    <div id="nuResult" style="margin-top:1rem;"></div>
+  </div>
+</div>
 
 <!-- ---------- MODAL LOG ---------- -->
 <div class="overlay hide" id="ovLog">
@@ -975,8 +1003,15 @@ async function carregarUsers(){
   $('listSemLogin').innerHTML = (sl&&sl.length)
     ? sl.map(g => `<div style="padding:5px 0;border-bottom:0.5px solid var(--border);font-size:13px;">
         <span class="badge medio">Sem login</span> ${esc(g.nome||'')} · ${esc(g.email)}
-        <button class="btn sm" style="float:right;" onclick="navigator.clipboard.writeText('${esc(g.email)}');toast('E-mail copiado.')"><i class="ti ti-copy"></i></button></div>`).join('')
+        <button class="btn sm primary" style="float:right;" onclick="abrirNovoUsuario('${esc(g.email)}','${esc(g.nome||'')}')"><i class="ti ti-user-plus"></i> Criar login</button></div>`).join('')
     : '<span class="badge ok">Nenhum</span> Todos os gestores do de-para já têm login.';
+
+  const {data:sv} = await sb.from('vw_logins_sem_vinculo').select('*');
+  $('listSemVinculo').innerHTML = (sv&&sv.length)
+    ? sv.map(u => `<div style="padding:5px 0;border-bottom:0.5px solid var(--border);font-size:13px;">
+        <span class="badge medio">Sem vínculo</span> ${esc(u.email)} <span class="cc">criado em ${fmtDt(u.criado_em)}</span></div>`).join('')
+    : '<span class="badge ok">Nenhum</span> Todo login tem responsabilidade atribuída.';
+
   const {data:us} = await sb.from('perfis').select('*').order('email');
   const {data:rs} = await sb.from('responsabilidades').select('email');
   const cnt = {}; (rs||[]).forEach(r => cnt[r.email.toLowerCase()] = (cnt[r.email.toLowerCase()]||0)+1);
@@ -986,6 +1021,58 @@ async function carregarUsers(){
       ${['gestor','controladoria','diretoria'].map(p => `<option value="${p}" ${u.papel===p?'selected':''}>${p}</option>`).join('')}
     </select></td>
     <td class="num">${cnt[u.email.toLowerCase()]||0}</td></tr>`).join('');
+}
+
+function gerarSenha(){
+  const a='ABCDEFGHJKLMNPQRSTUVWXYZ', b='abcdefghijkmnopqrstuvwxyz', c='23456789', d='!@#$%&*';
+  const p = [a,b,c,d].map(s => s[Math.floor(Math.random()*s.length)]);
+  const todos = a+b+c+d;
+  while(p.length < 12) p.push(todos[Math.floor(Math.random()*todos.length)]);
+  return p.sort(() => Math.random()-0.5).join('');
+}
+
+function abrirNovoUsuario(email, nome){
+  $('nuNome').value = nome || '';
+  $('nuEmail').value = email || '';
+  $('nuPapel').value = 'gestor';
+  $('nuSenha').value = gerarSenha();
+  $('nuResult').innerHTML = '';
+  $('nuBtn').disabled = false;
+  $('ovUser').classList.remove('hide');
+}
+
+async function criarUsuario(){
+  const nome = $('nuNome').value.trim(), email = $('nuEmail').value.trim().toLowerCase();
+  const papel = $('nuPapel').value, senha = $('nuSenha').value;
+  if(!nome || !email) return toast('Preencha nome e e-mail.', true);
+  if(senha.length < 8) return toast('A senha precisa de pelo menos 8 caracteres.', true);
+  const btn = $('nuBtn'); btn.disabled = true;
+  const out = m => $('nuResult').innerHTML = m;
+  out('<span class="muted">Criando...</span>');
+
+  // A criação roda na Edge Function, com a service_role guardada no servidor.
+  const {data, error} = await sb.functions.invoke('criar-usuario', {body:{email, senha, nome, papel}});
+  if(error || data?.error){
+    btn.disabled = false;
+    let msg = data?.error || error.message;
+    if(/Failed to send|Failed to fetch|non-2xx/i.test(msg) && !data?.error)
+      msg = 'Não consegui falar com a função <b>criar-usuario</b>. Confira se ela foi publicada no Supabase (Edge Functions).';
+    return out(`<span class="badge alto">Erro</span> ${msg}`);
+  }
+
+  const corpo = `Olá, ${nome}\n\nSeu acesso ao sistema de Justificativa de Desvios Orçamentários foi criado.\n\n`
+    + `Endereço: ${location.origin}${location.pathname}\nUsuário: ${email}\nSenha inicial: ${senha}\n\n`
+    + `Troque a senha no primeiro acesso.\n\nControladoria`;
+  out(`<div class="card" style="margin:0;">
+      <div><span class="badge ok">Login criado</span> ${esc(email)}</div>
+      <div style="margin-top:8px;font-size:13px;">Senha inicial: <b>${esc(senha)}</b></div>
+      ${data?.aviso ? `<div style="margin-top:8px;"><span class="badge medio">Atenção</span> ${esc(data.aviso)}</div>` : ''}
+      <div class="btn-row" style="margin-top:10px;">
+        <button class="btn sm" onclick="navigator.clipboard.writeText('${esc(email)}\\n${esc(senha)}');toast('Credenciais copiadas.')"><i class="ti ti-copy"></i> Copiar credenciais</button>
+        <a class="btn sm" href="mailto:${esc(email)}?subject=${encodeURIComponent('Acesso — Justificativa de Desvios')}&body=${encodeURIComponent(corpo)}"><i class="ti ti-mail"></i> Enviar por e-mail</a>
+      </div></div>`);
+  toast('Login criado.');
+  carregarUsers();
 }
 async function setPapel(id, papel){
   const {error} = await sb.from('perfis').update({papel}).eq('id', id);
